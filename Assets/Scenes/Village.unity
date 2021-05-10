@@ -31933,6 +31933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8
+  theRB: {fileID: 1526486123}
 --- !u!4 &1526486121
 Transform:
   m_ObjectHideFlags: 0

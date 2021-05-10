@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
 
+    public Rigidbody2D theRB;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,9 +17,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float newXPosition = transform.position.x + (Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime);
-        float newYPosition = transform.position.y + (Input.GetAxisRaw("Vertical") * moveSpeed * Time.deltaTime);
+        // float newXPosition = transform.position.x + (Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime);
+        // float newYPosition = transform.position.y + (Input.GetAxisRaw("Vertical") * moveSpeed * Time.deltaTime);
 
-        transform.position = new Vector3(newXPosition, newYPosition, transform.position.z);
+        // transform.position = new Vector3(newXPosition, newYPosition, transform.position.z);
+
+        float newXPosition = Input.GetAxisRaw("Horizontal");
+        float newYPosition = Input.GetAxisRaw("Vertical");
+
+        theRB.velocity = new Vector2(newXPosition, newYPosition).normalized * moveSpeed;
     }
 }
