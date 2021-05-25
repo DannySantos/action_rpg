@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
     public Rigidbody2D theRB;
+    public SpriteRenderer theSR;
+    public Sprite[] playerDirectionSprites;
     private Animator anim;
 
     // Start is called before the first frame update
@@ -28,5 +30,30 @@ public class PlayerController : MonoBehaviour
         theRB.velocity = new Vector2(newXPosition, newYPosition).normalized * moveSpeed;
 
         anim.SetFloat("Speed", theRB.velocity.magnitude);
+
+        if(theRB.velocity != Vector2.zero)
+        {
+            if(Input.GetAxisRaw("Horizontal") != 0)
+            {
+                theSR.sprite = playerDirectionSprites[1];
+
+                if(Input.GetAxisRaw("Horizontal") < 0)
+                {
+                    theSR.flipX = true;
+                } else 
+                {
+                    theSR.flipX = false;
+                }
+            } else
+            {
+                if(Input.GetAxisRaw("Vertical") < 0)
+                {
+                    theSR.sprite = playerDirectionSprites[0];
+                } else
+                {
+                    theSR.sprite = playerDirectionSprites[2];
+                }
+            }
+        }
     }
 }
